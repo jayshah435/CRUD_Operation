@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../../static/category.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Edit Subcategory</title>
+</head>
+<body>
+<form class="add_category" action="/admin/update_subcategory" method="post">
+<div class="container">
+    <div class="row">
+        <input class="ins_cat_name" type="text" name="subcategoryName" value="{{
+                subcategory_vo_list['subcategory_name']
+                }}"
+               placeholder="Subcategory Name"/>
+        <textarea class="ins_cat_des" cols="20" rows="4"
+                                        name="subcategoryDescription"
+                  placeholder="Subategory Description">{{
+                subcategory_vo_list['subcategory_description'] }}</textarea>
+        <input class="ins_cat_but" type="submit" name="submit" value="UPDATE"/>
+        <input type="hidden" name="subcategoryId" value="{{
+                subcategory_vo_list['subcategory_id'] }}"/>
+    </div>
+</div>
+
+</form>
+</body>
+</html>

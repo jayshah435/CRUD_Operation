@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='category.css')
+            }}">
+    <meta charset="UTF-8">
+    <title>Add Subcategory</title>
+</head>
+<body>
+
+<form class="add_category" action="/admin/insert_subcategory" method="post">
+<div class="container">
+    <div class="row">
+        <span class="category_name">CATEGORY NAME:
+        <select class="subcategory" name="subcategoryCategoryId">
+            {% for i in category_vo_list %}
+            <option value="{{ i['category_id'] }}">{{
+                    i['category_name']
+                    }}</option>
+            {% endfor %}
+        </select>
+        </span>
+            <input class="ins_cat_name" type="text" name="subcategoryName"
+                   placeholder="Subcategory Name"/>
+            <textarea class="ins_cat_des" cols="20" rows="4"
+                                            name="subcategoryDescription"
+                      placeholder="Subategory Description"></textarea>
+            <input class="ins_cat_but" type="submit" name="submit" value="SUBMIT"/>
+        </div>
+    </div>
+</form>
+</body>
+</html>

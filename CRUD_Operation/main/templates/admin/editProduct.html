@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='category.css')
+            }}">
+    <meta charset="UTF-8">
+    <title>Edit Product</title>
+    <script>
+
+        function categoryfn() {
+
+            var category = document.getElementById('categoryId');
+            var subcategory = document.getElementById('subcategoryId');
+            console.log("category>>>", category.value);
+            subcategory.innerHTML = '';
+            console.log(subcategory);
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+
+                if(ajax.readyState === 4) {
+                    var json_data = JSON.parse(ajax.responseText);
+                    console.log(json_data.length);
+                    for (var i = 0; i < json_data.length; i++) {
+                        var option = document.createElement('option');
+                        option.value = json_data[i].subcategory_id;
+                        option.text = json_data[i].subcategory_name;
+                        subcategory.add(option);
+                        console.log(json_data);
+                    }
+                }
+
+
+            };
+            ajax.open('get',"/admin/select_product?prd="+category
+                .value,
+                true);
+            ajax.send();
+        }
+
+    </script>
+</head>
+<body>
+<form action="/admin/update_product" method="post">
+<div class="container">
+    <div class="row">
+        <select class="subcategory mul-box" onchange="categoryfn()" id="categoryId"
+                 name="product_category_id" required>
+            <option selected disabled>--Select Category--</option>
+            {% for i in category_vo_list %}
+            <option value="{{ i['category_id'] }}" >{{ i['category_name'] }}</option>
+            {% endfor %}
+        </select>
+        <select class="subcategory mul-box" id="subcategoryId"
+                name="product_subcategory_id" required>
+            <option selected disabled>--Select Subcategory--</option>
+        </select>
+        <input type="text" value="{{
+                    product_vo_list['product_name']
+                    }}" class="ins_cat_name" name="productName"
+               placeholder="Product Name"/>
+        <textarea class="ins_cat_des" cols="20" rows="4" name="productDescription"
+                  placeholder="Product Description">{{
+                    product_vo_list['product_description']
+                    }}"</textarea>
+        <input class="mul-box" value="{{
+                    product_vo_list['product_price']
+                    }}" type="number" name="productPrice"
+               placeholder="Product Price"/>
+        <input class="mul-box" type="number" value="{{
+                    product_vo_list['product_quantity']
+                    }}" name="productQuantity"
+               placeholder="Product Quantity"/>
+
+        {#<input class="category_data" type="hidden" name="productImage"/>#}
+        {#<button type="submit">Upload</button>#}
+
+        <input class="ins_cat_but" type="submit" value="Update"/>
+        <input type="hidden" name="productId" value="{{
+                    product_vo_list['product_id'] }}"/>
+    </div>
+</div>
+</form>
+</body>
+</html>

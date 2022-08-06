@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='category.css')
+            }}">
+    <meta charset="UTF-8">
+    <title>Add Category</title>
+</head>
+<body>
+<form action="/admin/insert_category" method="post">
+    <div class="container">
+        <div class="row">
+            <input class="ins_cat_name" type="text" name="categoryName"
+                   placeholder="Category Name">
+            <textarea class="ins_cat_des" cols="20" rows="4"
+                      name="categoryDescription"
+                      placeholder="Category Description"></textarea>
+            <button class="ins_cat_but" type="submit"
+                    name="submit">Submit</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

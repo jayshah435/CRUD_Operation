@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='category.css')
+            }}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <a href="/admin/load_category">
+            <button class="category">Add Category</button>
+        </a>
+        <a href="/admin/view_category">
+            <button class="category">View Category</button>
+        </a>
+        <a href="/admin/load_subcategory">
+            <button class="category">Add Subcategory</button>
+        </a>
+        <a href="/admin/view_subcategory">
+            <button class="category">View Subcategory</button>
+        </a>
+        <a href="/admin/load_product">
+            <button class="category">Add Product</button>
+        </a>
+        <a href="/admin/view_product">
+            <button class="category">View Product</button>
+        </a>
+    </div>
+</div>
+</body>
+</html>

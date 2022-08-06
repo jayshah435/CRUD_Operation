@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='category.css')
+            }}">
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <script>
+        
+        function categoryfn() {
+
+            var category = document.getElementById('categoryId');
+            var subcategory = document.getElementById('subcategoryId');
+            console.log("category>>>", category.value);
+            subcategory.innerHTML = '';
+{#            console.log(subcategory);#}
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+
+                if(ajax.readyState === 4) {
+                    var json_data = JSON.parse(ajax.responseText);
+                    console.log(json_data.length);
+                    for (var i = 0; i < json_data.length; i++) {
+                        var option = document.createElement('option');
+                        option.value = json_data[i].subcategory_id;
+                        option.text = json_data[i].subcategory_name;
+                        subcategory.add(option);
+                        console.log(json_data);
+                    }
+                }
+
+
+            };
+            ajax.open('get',"/admin/select_subcategory?product="+category
+                .value,
+                true);
+            ajax.send();
+        }
+        
+    </script>
+</head>
+<body>
+<form class="add_category" action="/admin/insert_product" method="post"
+          enctype="multipart/form-data">
+<div class="container">
+    <div class="row">
+        <select class="subcategory sbox" onchange="categoryfn()"
+                id="categoryId" name="product_category_id">
+            <option selected disabled>--Select Category--</option>
+            {% for i in category_vo_list %}
+            <option value="{{ i['category_id'] }}" >{{ i['category_name'] }}</option>
+            {% endfor %}
+        </select>
+        <select class="subcategory sbox" id="subcategoryId"
+                name="product_subcategory_id">
+            <option selected disabled>--Select Subcategory--</option>
+        </select>
+        <input type="text" class="ins_cat_name" name="productName"
+               placeholder="Product Name"/>
+
+        <textarea class="ins_cat_des" cols="20" rows="4" name="productDescription"
+                  placeholder="Product Description"></textarea>
+        <input class="mul-box" type="number" name="productPrice"
+               placeholder="Product Price"/>
+        <input class="mul-box" type="number" name="productQuantity" placeholder="Product Quantity"/>
+        <input class="mul-box" type="file" name="productImage"/>
+        {#<button type="submit">Upload</button>#}
+
+        <input class="ins_cat_but" type="submit" value="Submit"/>
+    </div>
+</div>
+</form>
+</body>
+</html>

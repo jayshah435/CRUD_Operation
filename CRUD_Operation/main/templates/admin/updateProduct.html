@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    `
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table border="1px" class="category_data">
+
+    <tr>
+        <th>Category Name</th>
+        <th>Subcategory Name</th>
+        <th>Product Name</th>
+        <th>Product Description</th>
+        <th>Product Price</th>
+        <th>Product Quantity</th>
+        <th>Product Image</th>
+        <th colspan="2">Action</th>
+    </tr>
+
+    {% for i in product_vo_list %}
+
+    <tr>
+        <td >{{ i.CategoryVO.category_name }}</td>
+        <td >{{ i.SubCategoryVO.subcategory_name }}</td>
+        <td >{{ i.ProductVO.product_description }}</td>
+        <td >{{ i.ProductVO.product_name }}</td>
+        <td >{{ i.ProductVO.product_price }}</td>
+        <td >{{ i.ProductVO.product_quantity }}</td>
+{#        <td ><a href="{{ i[0]['product_image_path'] }}{{#}
+{#                i[0]['product_image_name']#}
+{#                }}">View Image</a></td>#}
+        <td ><a href=" {{ i.ProductVO.product_image_path }}{{ i.ProductVO
+        .product_image_name }}">View Image</a></td>
+        <td><a href="/admin/delete_product?pid={{ i.ProductVO.product_id
+            }}&path={{ i.ProductVO.product_image_path }}{{ i.ProductVO
+                .product_image_name }}">Delete</a>
+        </td>
+        <td><a href="/admin/edit_product?prid={{
+                i.ProductVO.product_id
+                }}">EDIT</a>
+        </td>
+    </tr>
+
+    {% endfor %}
+</table>
+
+</body>
+</html>

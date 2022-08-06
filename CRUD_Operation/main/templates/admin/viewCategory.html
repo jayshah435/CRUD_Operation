@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='viewcategory.css')
+            }}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <table border="1px" class="table-border">
+            <tr>
+                <th class="row-bg">Category Name</th>
+                <th class="row-bg">Category Description</th>
+                <th class="row-bg" colspan="2">Action</th>
+            </tr>
+
+                {% for i in category_vo_list %}
+                <tr>
+                    <td class="remain-bg">{{ i['category_name'] }}</td>
+                    <td class="remain-bg">{{ i['category_description'] }}</td>
+                    <td class="remain-bg btn-bg"><a class="btn-bg"
+                        href="/admin/delete_category?userid={{ i['category_id']
+                        }}">DELETE</a>
+                    </td>
+                    <td class="remain-bg btn-bg"><a class="btn-bg"
+                                     href="/admin/edit_category?userid={{
+                        i['category_id']
+                        }}">EDIT</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+        </table>
+    </div>
+</div>
+</body>
+</html>

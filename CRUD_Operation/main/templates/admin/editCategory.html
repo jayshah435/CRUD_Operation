@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../../static/category.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Edit Category</title>
+</head>
+<body>
+<form action="/admin/update_category" method="post">
+<div class="container">
+    <div class="row">
+            <input class="ins_cat_name" type="text" name="categoryName" value="{{
+                category_vo_list['category_name'] }}" placeholder="Category Name"/>
+            <textarea class="ins_cat_des" cols="20" rows="4"
+                                        name="categoryDescription" placeholder="Category Description">{{
+                category_vo_list['category_description'] }}</textarea>
+            <input class="ins_cat_but" type="submit" name="submit" value="UPDATE"/>
+            <input type="hidden" name="categoryId" value="{{ category_vo_list['category_id'] }}"/>
+        {#<a href="/admin/view_category">View User</a>#}
+    </div>
+</div>
+</form>
+</body>
+</html>

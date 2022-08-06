@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="../static/register.css">
+</head>
+<body>
+<form method="post" action="/insert_login">
+    <div class="container">
+        <div class="row">
+            <input class="user_name" type="text" placeholder="User Name"
+                   name="userName" required>
+            <input class="email" type="text" placeholder="Email or Mobile No"
+                   name="email" required>
+            <input class="password" type="password" placeholder="Password"
+                   name="password" required>
+            <button class="button" type="submit">Register</button>
+            {% with message = get_flashed_messages() %}
+
+                {% if message %}
+
+                    <div style="color: black; font-weight: bolder;">{{ message[0] }}</div>
+
+                {% endif %}
+
+            {% endwith %}
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

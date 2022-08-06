@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='viewcategory.css')
+            }}">
+    <meta charset="UTF-8">
+    <title>Product</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <table border="1px" class="table-border">
+
+            <tr class="">
+                <th class="row-bg">Category Name</th>
+                <th class="row-bg">Subcategory Name</th>
+                <th class="row-bg">Product Name</th>
+                <th class="row-bg">Product Description</th>
+                <th class="row-bg">Product Price</th>
+                <th class="row-bg">Product Quantity</th>
+                <th class="row-bg">Product Image</th>
+                <th class="row-bg" colspan="2">Action</th>
+            </tr>
+
+            {% for i in product_vo_list %}
+
+            <tr>
+                <td class="remain-bg">{{ i.CategoryVO.category_name
+                        }}</td>
+                <td class="remain-bg">{{ i.SubCategoryVO.subcategory_name }}</td>
+                <td class="remain-bg">{{ i.ProductVO.product_description }}</td>
+                <td class="remain-bg">{{ i.ProductVO.product_name }}</td>
+                <td class="remain-bg">{{ i.ProductVO.product_price }}</td>
+                <td class="remain-bg">{{ i.ProductVO.product_quantity }}</td>
+        {#        <td ><a href="{{ i[0]['product_image_path'] }}{{#}
+        {#                i[0]['product_image_name']#}
+        {#                }}">View Image</a></td>#}
+                <td class="remain-bg btn-bg"><a class="btn-bg" href=" {{ i.ProductVO
+                .product_image_path }}{{ i.ProductVO
+                .product_image_name }}">View Image</a></td>
+                <td class="remain-bg btn-bg"><a class="btn-bg"
+                                          href="/admin/delete_product?pid={{
+                        i.ProductVO.product_id
+                    }}&path={{ i.ProductVO.product_image_path }}{{ i.ProductVO
+                        .product_image_name }}">Delete</a>
+                </td>
+                <td class="remain-bg btn-bg"><a class="btn-bg"
+                                          href="/admin/edit_product?prid={{
+                        i.ProductVO.product_id
+                        }}&cn={{ i.ProductVO.product_category_id }}&sn={{ i.ProductVO.product_subcategory_id }}">EDIT</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

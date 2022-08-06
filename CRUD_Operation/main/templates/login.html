@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="../static/login.css">
+</head>
+<body>
+
+<form method="post" action="/validate_login">
+<div class="container">
+    <div class="row">
+        <input name="text" class="email" type="email" placeholder="Email Or Contact No" required>
+        <input name="password" class="password" type="password"
+               placeholder="Password" required>
+        <button class="button" type="submit">Login</button>
+        <a href="/register" class="new_user">Create New Account</a>
+        {% with message = get_flashed_messages() %}
+
+            {% if message %}
+
+                <div style="color: black; font-weight: bolder;">{{ message[0] }}</div>
+
+            {% endif %}
+
+        {% endwith %}
+    </div>
+</div>
+</form>
+</body>
+</html>
